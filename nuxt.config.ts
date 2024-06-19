@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	devtools: { enabled: false },
-	modules: ["@nuxt/ui", "@nuxtjs/google-fonts", "nuxt-vuefire"],
+	modules: [
+		"@nuxt/ui",
+		"@nuxtjs/google-fonts",
+		"nuxt-vuefire",
+		"@pinia/nuxt",
+	],
 	plugins: ["~/plugins/axios.js"],
 	// app: {
 	//     pageTransition: { name: "page", mode: "out-in", },
