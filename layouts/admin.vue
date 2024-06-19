@@ -1,11 +1,11 @@
 <template>
     <div class="flex flex-col h-screen">
         <sidebar></sidebar>
-        <slot />
+        <!-- <slot /> -->
     </div>
 
     <ClientOnly>
-        
+
     </ClientOnly>
     <UNotifications />
 </template>
