@@ -69,11 +69,7 @@
       icon: "i-heroicons-shopping-bag-solid",
       to: "/orders",
     },
-    {
-      label: "Каталог товаров",
-      icon: "i-heroicons-clipboard-document-list",
-      to: "/goods",
-    },
+  
   ];
   
   const { logout } = actions();
