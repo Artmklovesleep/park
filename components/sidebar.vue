@@ -1,7 +1,7 @@
 <template>
-    <div class="flex flex-col min-h-screen top-0 w-full">
+    <div class="flex flex-col min-h-screen w-full">
         <!-- Navigation Bar -->
-        <nav class="bg-white dark:bg-pale-sky-900 px-5 py-3 shadow-md">
+        <nav class="bg-white dark:bg-pale-sky-900 px-5 py-3 shadow-md ">
             <div class="flex justify-between items-center">
                 <div class="flex space-x-4">
                     <div v-for="link in links" :key="link.label"
@@ -10,8 +10,10 @@
                             'text-pale-sky-500 hover:text-pale-sky-900 dark:text-pale-sky-400 hover:dark:text-white':
                                 !isActive(link.to)
                         }" @click="navigate(link.to)">
-                        <span v-if="link.icon" :class="link.icon"></span>
-                        {{ link.label }}
+                        <div class="flex flex-row gap-1 justify-center items-center text-lg">
+                            <div v-if="link.icon" :class="link.icon"></div>
+                            <div>{{ link.label }}</div>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" @click="logout"
@@ -21,7 +23,7 @@
             </div>
         </nav>
         <!-- Page Content -->
-        <main class="flex-1 p-5">
+        <main class="flex-1 flex flex-col justify-center ">
             <router-view></router-view>
         </main>
     </div>

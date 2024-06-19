@@ -6,3 +6,39 @@
 }
 @layer base {
 }
+
+.btn__green {
+	@apply px-4 py-2 rounded-lg bg-mountain-600 hover:bg-mountain-700 transition duration-150 text-white active:bg-mountain-600;
+}
+
+.btn__white {
+	@apply px-4 py-2 rounded-lg bg-white hover:bg-pale-sky-300 transition duration-150 text-black active:bg-white;
+}
+
+.btn__black {
+	@apply px-4 py-2 rounded-lg bg-black hover:bg-pale-sky-600 transition duration-150 text-white active:bg-black;
+}
+
+.btn__black-disabled {
+	@apply px-4 py-2 rounded-lg bg-pale-sky-700 hover:bg-pale-sky-600 transition duration-150 text-white;
+}
+
+.btn__green-disabled {
+	@apply px-4 py-2 rounded-lg bg-mountain-700 hover:bg-mountain-600 transition duration-150 text-white;
+}
+
+.pulse {
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
