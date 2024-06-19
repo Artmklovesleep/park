@@ -1,48 +1,70 @@
 <template>
-    <UContainer class="grid place-content-center h-screen">
+    <UContainer class="grid place-content-center h-screen bg-white">
+        <div class="w-full max-w-md p-6 space-y-6 bg-card rounded-lg shadow-lg">
         <div class="flex-col px-6">
-            <img src="~/assets/img/man.png" class="sm:w-64 mx-auto w-32 animate__animated animate__swing" alt="" />
-
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 class="my-3 text-center text-3xl font-bold leading-9 tracking-tight">
+                <h2 class="my-3 text-center text-3xl font-bold leading-9 tracking-tight text-black">
                     Зарегистрируйте свой личный аккаунт
                 </h2>
             </div>
             <div class="sm:mx-auto sm:w-full sm:max-w-sm mb-10">
                 <UForm :schema="schema" :state="state" class="space-y-4" @submit="handleSubmit($event, state)">
-                    <UFormGroup label="Nickname" name="username">
-                        <UInput v-model="state.nickname" placeholder="kukaracha" color="pale-sky" class="font-bold" />
+                    <UFormGroup label="Nickname" name="nickname">
+                        <UInput 
+                            v-model="state.nickname" 
+                            placeholder="" 
+                            class="font-bold text-black" 
+                            :ui="{
+                                placeholder: 'placeholder-gray-400',
+                            }"
+                        />
                     </UFormGroup>
 
                     <UFormGroup label="Электронная почта" name="email">
-                        <UInput v-model="state.email" placeholder="example@domain.com" color="pale-sky"
-                            class="font-bold" />
+                        <UInput 
+                            v-model="state.email" 
+                            placeholder="primer@mail.ru" 
+                            class="font-bold text-black" 
+                            :ui="{
+                                placeholder: 'placeholder-gray-400',
+                            }"
+                        />
                     </UFormGroup>
 
                     <UFormGroup label="Пароль" name="password">
-                        <UInput v-model="state.password" type="password" placeholder="" color="pale-sky"
-                            class="font-semibold" />
+                        <UInput 
+                            v-model="state.password" 
+                            type="password" 
+                            placeholder="" 
+                            class="font-semibold text-black" 
+                        />
                     </UFormGroup>
 
                     <div class="flex flex-row">
                         <button
-                            class="text-white active:bg-pale-sky-900 hover:bg-pale-sky-800 bg-pale-sky-900 my-auto shadow-lg dark:shadow-neutral-700/50 grow text-black-700 font-semibold h-9 border-2 border-pale-sky-900 dark:border-neutral-100 hover:dark:bg-neutral-200 dark:bg-neutral-50 dark:text-black active:dark:bg-neutral-50 rounded-lg">
+                            class="grow text-white bg-black hover:bg-gray-800 focus:outline-none focus:ring-gray-800 shadow-lg shadow-gray-500/50 dark:shadow-lg dark:shadow-gray-700/80 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 animate__animated transition ease-in-out duration-300"
+                        >
                             Зарегистрироваться
                         </button>
                     </div>
                 </UForm>
                 <div class="mt-4 flex flex-row">
-                    <div class="font-semibold my-auto">
-                        <NuxtLink href="login">Уже есть аккаунт?</NuxtLink>
+                    <div class="font-semibold my-auto leading-4 text-black">
+                        <NuxtLink href="login" class="text-black">Уже есть аккаунт?</NuxtLink>
                     </div>
-                    <NuxtLink to="login"
-                        class="text-center bg-transparent grow hover:bg-mountain-500 text-black-700 font-bold hover:font-medium hover:text-white p-px border-4 border-mountain-500 hover:border-transparent rounded-lg ml-3">
-                        Войти</NuxtLink>
+                    <NuxtLink
+                        to="login"
+                        class="text-center bg-transparent hover:bg-gray-200 my-auto shadow-lg dark:shadow-neutral-700/50 grow text-black font-semibold p-1 border-2 border-black dark:border-neutral-400 hover:dark:bg-neutral-800 rounded-lg animate__animated hover:animate__swing ml-3"
+                    >
+                        Войти
+                    </NuxtLink>
                 </div>
             </div>
         </div>
+    </div>
     </UContainer>
 </template>
+
 
 <script setup lang="ts">
 import type { FormError, FormSubmitEvent } from "#ui/types";
