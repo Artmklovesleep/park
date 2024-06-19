@@ -52,9 +52,9 @@ const links = [
         to: "/home",
     },
     {
-        label: "Настройки",
+        label: "Заказы",
         icon: "i-heroicons-chart-bar",
-        to: `/settings`,
+        to: `/history`,
     },
     {
         label: "Заказы",

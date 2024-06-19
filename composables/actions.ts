@@ -1,3 +1,4 @@
+import { ClientOnly } from './../.nuxt/components.d';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -5,17 +6,25 @@ import {
     signOut,
     getAuth,
 } from "firebase/auth";
-import { doc, setDoc, addDoc, collection, serverTimestamp } from "firebase/firestore";
-
-
+import {
+    doc,
+    setDoc,
+    addDoc,
+    collection,
+    serverTimestamp,
+} from "firebase/firestore";
+import { API } from '~/plugins/axios.js';
 
 export const actions = () => {
     const auth = useFirebaseAuth();
     const toast = useToast();
     const db = useFirestore();
 
-    const register = async (email: string, password: string, nickname: string) => {
-
+    const register = async (
+        email: string,
+        password: string,
+        nickname: string
+    ) => {
         try {
             toast.add({
                 title: "Происходит попытка регистрации в систему.",
@@ -25,11 +34,11 @@ export const actions = () => {
                     {
                         label: "loading",
                         loading: true,
-                    }
+                    },
                 ],
                 closeButton: {
                     label: "",
-                    icon: ""
+                    icon: "",
                 },
                 ui: { background: "bg-white dark:bg-neutral-900" },
             });
@@ -38,15 +47,39 @@ export const actions = () => {
                 email,
                 password
             );
-            if (user) {
 
+            
+            const data = {
+                    clientId: 0,
+                    surname: "",
+                    name: "",
+                    lastname: "",
+                    birthday: "2024-06-19",
+                    gender: "m",
+                    phone: "",
+                    email: email
+                };
+
+            API.post('Clients', data)
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+            if (user) {
                 const dataObj = {
                     uid: user.uid,
                     email: email,
                     nickname: nickname,
                     bot_token: "",
+                    address: "",
+                    name_store: "",
+                    api_key: "",
+                    status: false,
                 };
-                const docRef = await setDoc(doc(db, 'users', email), dataObj)
+                const docRef = await setDoc(doc(db, "users", email), dataObj);
                 await updateProfile(user, { displayName: nickname });
                 toast.add({
                     title: "Поздравляю вы зарегистрировались в системе.",
@@ -73,17 +106,17 @@ export const actions = () => {
         try {
             toast.add({
                 title: "Происходит попытка входа в систему.",
-                timeout: 2000,
+                timeout: 1000,
                 color: "pale-sky",
                 actions: [
                     {
                         label: "loading",
                         loading: true,
-                    }
+                    },
                 ],
                 closeButton: {
                     label: "",
-                    icon: ""
+                    icon: "",
                 },
                 ui: { background: "bg-white dark:bg-neutral-900" },
             });
@@ -96,7 +129,7 @@ export const actions = () => {
                 title: "Поздравляю - вы авторизовались в системе.",
                 timeout: 1000,
                 callback: () => {
-                    navigateTo("/home");
+                    navigateTo("/profile");
                 },
                 ui: { background: "bg-white dark:bg-neutral-900" },
             });
@@ -119,7 +152,7 @@ export const actions = () => {
                 timeout: 1000,
                 color: "flamingo",
                 callback: () => {
-                    navigateTo("/login");
+                    navigateTo("");
                 },
                 ui: { background: "bg-white dark:bg-neutral-900" },
             });
